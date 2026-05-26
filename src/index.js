@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./Components/Header/Header";
 import Home from "./Pages/HomePage/Home.jsx";
-
 import About from "./Pages/AboutPage/About";
 import Barcode from "./Pages/BarCode/Barcode";
 
