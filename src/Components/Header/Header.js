@@ -7,10 +7,8 @@ const Header = () => {
   return (
     <header className="header">
       <nav className="navbar">
-
         {/* LOGO */}
         <a href="/" className="logo">
-
           {/* SVG LOGO */}
           <svg
             width="52"
@@ -98,6 +96,10 @@ const Header = () => {
           <li>
             <a href="/about">About</a>
           </li>
+
+          <li>
+            <a href="/barcode">Bar Code</a>
+          </li>
         </ul>
 
         {/* DESKTOP ACTIONS */}
@@ -124,7 +126,7 @@ const Header = () => {
         <a href="/restaurants">Restaurants</a>
         <a href="/offers">Offers</a>
         <a href="/about">About</a>
-
+        <a href="/barcode">Bar code</a>
         <div className="mobile-buttons">
           <a href="/login" className="mobile-login">
             Login
