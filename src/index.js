@@ -4,10 +4,10 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Header from "./Components/Header/Header";
+import Header from "./Components/Header/Header.js";
 import Home from "./Pages/HomePage/Home.jsx";
-import About from "./Pages/AboutPage/About";
-import Barcode from "./Pages/BarCode/Barcode";
+import About from "./Pages/AboutPage/About.jsx";
+import Barcode from "./Pages/BarCode/Barcode.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
