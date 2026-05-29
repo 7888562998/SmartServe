@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/authSlice";
