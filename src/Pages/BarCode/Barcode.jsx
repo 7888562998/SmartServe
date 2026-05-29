@@ -50,9 +50,11 @@ const Barcode = () => {
 
   return (
     <div className="barcode-page">
-      <h1>SmartServe Table QR Generator</h1>
-
       <div className="card">
+
+        <h1>SmartServe QR Generator</h1>
+        <p className="subtitle">Generate table QR for ordering system</p>
+
         <input
           type="text"
           placeholder="Enter Table No (e.g. T1, T2)"
@@ -60,22 +62,35 @@ const Barcode = () => {
           onChange={(e) => setTableNo(e.target.value)}
         />
 
-        <button onClick={setTableStatus}>Generate QR Code</button>
+        <button onClick={setTableStatus}>
+          Generate QR Code
+        </button>
 
         {generatedCode && (
           <div className="result">
-            <p>Scan to Order</p>
 
-            {/* QR CODE WITH REDIRECT LINK */}
-            <QRCodeCanvas
-              value={`${BASE_URL}/foodList?barcode=${generatedCode}`}
-              size={180}
-            />
+            <p className="scan-text">Scan to Order</p>
 
-            <h2>{generatedCode}</h2>
+            <div className="qr-box">
+              <QRCodeCanvas
+                value={`${BASE_URL}/foodList/${generatedCode}`}
+                size={180}
+              />
+            </div>
+
+            <h2 className="code">{generatedCode}</h2>
+
+            <a
+              className="order-link"
+              href={`${BASE_URL}/foodList/${generatedCode}`}
+            >
+              Start your order →
+            </a>
+
             <small>Valid for current session only</small>
           </div>
         )}
+
       </div>
     </div>
   );
