@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/slices/authSlice";
+import { useSelector } from "react-redux";
+import  LoginModal  from "../Login/LoginModal";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
     <header className="header">
@@ -100,14 +107,36 @@ const Header = () => {
           <li>
             <a href="/barcode">Bar Code</a>
           </li>
+
+          {!isLoggedIn ? (
+            <>
+              <li>
+                <button
+                  className="login-btn"
+                  onClick={() => setShowLoginModal(true)}
+                >
+                  Login
+                </button>
+              </li>
+
+              <li>
+                <a href="/register" className="register-btn">
+                  Register
+                </a>
+              </li>
+            </>
+          ) : (
+            <li>
+              <button className="login-btn" onClick={() => {
+                dispatch(logout());
+              }}>
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
 
         {/* DESKTOP ACTIONS */}
-        <div className="nav-actions">
-          <a href="/order" className="order-btn">
-            Order Now
-          </a>
-        </div>
 
         {/* MOBILE MENU BUTTON */}
         <button
@@ -128,15 +157,18 @@ const Header = () => {
         <a href="/about">About</a>
         <a href="/barcode">Bar code</a>
         <div className="mobile-buttons">
-          <a href="/login" className="mobile-login">
+          <a href="/login" className="mobile-login login-btn">
             Login
           </a>
 
-          <a href="/order" className="mobile-order">
-            Order Now
+          <a href="/register" className="mobile-login register-btn">
+            Register
           </a>
         </div>
       </div>
+      {showLoginModal && (
+        <LoginModal closeModal={() => setShowLoginModal(false)} />
+      )}
     </header>
   );
 };

@@ -177,6 +177,44 @@ body{
   font-weight:600;
 }
 
+/* LOGIN BUTTON */
+.login-btn{
+  padding:10px 22px;
+  border:2px solid #ff4d4f;
+  border-radius:12px;
+  text-decoration:none;
+  color:#ff4d4f !important;
+  font-weight:600;
+  transition:0.3s ease;
+}
+
+.login-btn:hover{
+  background:#ff4d4f;
+  color:#fff !important;
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(255,77,79,0.25);
+}
+
+/* REGISTER BUTTON */
+.register-btn{
+  background:linear-gradient(135deg,#ff7a18,#ff3d54);
+  color:#fff !important;
+  text-decoration:none;
+  padding:11px 24px;
+  border-radius:12px;
+  font-weight:600;
+  transition:0.3s ease;
+  box-shadow:0 4px 14px rgba(255,77,79,0.18);
+}
+
+.register-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(255,77,79,0.30);
+}
+
+.login-btn{
+  cursor: pointer;
+}
 /* RESPONSIVE */
 @media (max-width: 900px){
 
@@ -222,3 +260,5 @@ body{
     height:42px;
   }
 }
+
+
