@@ -3,7 +3,7 @@ import "./Header.css";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/authSlice";
 import { useSelector } from "react-redux";
-import  LoginModal  from "../Login/LoginModal";
+import LoginModal from "../Login/LoginModal";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -150,20 +150,38 @@ const Header = () => {
       </nav>
 
       {/* MOBILE MENU */}
+      {/* MOBILE MENU */}
       <div className={`mobile-menu ${menuOpen ? "show" : ""}`}>
         <a href="/">Home</a>
         <a href="/restaurants">Restaurants</a>
         <a href="/offers">Offers</a>
         <a href="/about">About</a>
-        <a href="/barcode">Bar code</a>
-        <div className="mobile-buttons">
-          <a href="/login" className="mobile-login login-btn">
-            Login
-          </a>
+        <a href="/barcode">Bar Code</a>
 
-          <a href="/register" className="mobile-login register-btn">
-            Register
-          </a>
+        <div className="mobile-buttons">
+          {!isLoggedIn ? (
+            <>
+              <button
+                className="mobile-login login-btn"
+                onClick={() => setShowLoginModal(true)}
+              >
+                Login
+              </button>
+
+              <a href="/register" className="mobile-login register-btn">
+                Register
+              </a>
+            </>
+          ) : (
+            <button
+              className="mobile-login login-btn"
+              onClick={() => {
+                dispatch(logout());
+              }}
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
       {showLoginModal && (
