@@ -148,7 +148,7 @@ body{
   border-top:1px solid #eee;
 
   position:fixed;
-  top:0; /* header height */
+  top:66px; /* header height */
   left:0;
   width:100%;
   height:calc(100vh - 78px);
