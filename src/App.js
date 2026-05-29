@@ -1,37 +1,30 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
-import Header from "./Components/Header/Header";
-import About from "./Pages/AboutPage/About";
-import Barcode from "./Pages/BarCode/Barcode";
-
-function Home() {
-  return (
-    <div
-      style={{
-        padding: "80px 20px",
-        textAlign: "center",
-        fontFamily: "Poppins",
-      }}
-    >
-      <h1>Welcome to SmartServe</h1>
-      <p>Create restaurant orders using your table Order Code.</p>
-    </div>
-  );
-}
+import Header from "./Components/Header/Header.js";
+import Home from "./Pages/HomePage/Home.jsx";
+import About from "./Pages/AboutPage/About.jsx";
+import Barcode from "./Pages/BarCode/Barcode.jsx";
+import Register from "./Pages/RegisterPage/Register.jsx";
+import FoodList from "./Pages/FoodListpage/FoodList.jsx";
 
 function App() {
+  const location = useLocation();
+
+  const hideHeader = location.pathname.startsWith("/foodList");
+
   return (
-    <BrowserRouter>
-      <Header />
+    <>
+      {!hideHeader && <Header />}
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/barcode" element={<Barcode />} />
-
+        <Route path="/register" element={<Register />} />
+        <Route path="/foodList/:barcode" element={<FoodList />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
