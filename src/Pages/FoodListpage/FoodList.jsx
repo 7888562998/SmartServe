@@ -1,11 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import foods from "../../Data/foods.json";
 import "./FoodList.css";
+import CartList from "../../Components/FoodList/CartList";
 
 const FoodList = () => {
   const { barcode } = useParams();
 
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => {
+    setCart((prev) => {
+      const existing = prev.find((p) => p.id === item.id);
+
+      if (existing) {
+        return prev.map((p) =>
+          p.id === item.id
+            ? { ...p, quantity: p.quantity + 1 }
+            : p
+        );
+      }
+
+      return [...prev, { ...item, quantity: 1 }];
+    });
+  };
+
+  const increaseQty = (id) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  };
+
+  const decreaseQty = (id) => {
+    setCart((prev) =>
+      prev
+        .map((item) =>
+          item.id === id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  const removeFromCart = (id) => {
+    setCart((prev) =>
+      prev.filter((item) => item.id !== id)
+    );
+  };
   return (
     <div className="food-page">
       <h2>   <a href="/" className="logo">
@@ -80,6 +126,7 @@ const FoodList = () => {
       </a> Menu</h2>
       <p>Table: {barcode}</p>
 
+
       <div className="food-grid">
         {foods.map((item) => (
           <div key={item.id} className="food-card">
@@ -94,11 +141,23 @@ const FoodList = () => {
                 <span>Rs {item.price}</span>
               </div>
 
-              <button className="add-btn">+ Add</button>
+              <button
+                className="add-btn"
+                onClick={() => addToCart(item)}
+              >
+                + Add
+              </button>
             </div>
           </div>
         ))}
       </div>
+
+      <CartList
+        cart={cart}
+        increaseQty={increaseQty}
+        decreaseQty={decreaseQty}
+        removeFromCart={removeFromCart}
+      />
     </div>
   );
 };
