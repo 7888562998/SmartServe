@@ -21,8 +21,8 @@ const authSlice = createSlice({
     logout: (state) => {
       state.isLoggedIn = false;
       state.token = null;
-
-      localStorage.removeItem("token");
+      localStorage.clear();
+      window.location.href = "/";
     },
   },
 });

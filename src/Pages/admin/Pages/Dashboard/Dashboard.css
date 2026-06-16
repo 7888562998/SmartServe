@@ -1,0 +1,10 @@
+.dashboard-container {
+    height: calc(100vh - 60px);
+    /* adjust if you have topbar */
+    width: 100%;
+    overflow: hidden;
+    /* ❌ no page scroll */
+    display: flex;
+    flex-direction: column;
+    background: #f4f6f9;
+}
