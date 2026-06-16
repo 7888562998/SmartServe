@@ -1,0 +1,36 @@
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f6f9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #ff7a18 0%,
+    #ff5a1f 50%,
+    #ff3d54 100%
+  );
+  border-radius: 10px;
+  border: 2px solid #f4f6f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #ff8c3a 0%,
+    #ff6b2d 50%,
+    #ff4f67 100%
+  );
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff5a1f #f4f6f9;
+}
