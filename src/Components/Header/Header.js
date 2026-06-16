@@ -10,6 +10,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const loginType = localStorage.getItem("loginType");
 
   return (
     <header className="header">
@@ -107,7 +108,11 @@ const Header = () => {
           <li>
             <a href="/barcode">Bar Code</a>
           </li>
-
+          {isLoggedIn && loginType === "Owner" && (
+            <li>
+              <a href="/AddFoodProduct">Add Product</a>
+            </li>
+          )}
           {!isLoggedIn ? (
             <>
               <li>
