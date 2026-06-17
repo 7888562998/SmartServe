@@ -106,6 +106,10 @@ const Header = () => {
           </li>
 
           <li>
+            <a href="/pricing">Pricing</a>
+          </li>
+
+          <li>
             <a href="/barcode">Bar Code</a>
           </li>
           {isLoggedIn && loginType === "Owner" && (
@@ -161,6 +165,7 @@ const Header = () => {
         <a href="/restaurants">Restaurants</a>
         <a href="/offers">Offers</a>
         <a href="/about">About</a>
+        <a href="/pricing">Pricing</a>
         <a href="/barcode">Bar Code</a>
 
         <div className="mobile-buttons">
