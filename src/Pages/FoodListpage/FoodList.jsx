@@ -15,9 +15,7 @@ const FoodList = () => {
 
       if (existing) {
         return prev.map((p) =>
-          p.id === item.id
-            ? { ...p, quantity: p.quantity + 1 }
-            : p
+          p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p,
         );
       }
 
@@ -28,10 +26,8 @@ const FoodList = () => {
   const increaseQty = (id) => {
     setCart((prev) =>
       prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
     );
   };
 
@@ -39,93 +35,92 @@ const FoodList = () => {
     setCart((prev) =>
       prev
         .map((item) =>
-          item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
         )
-        .filter((item) => item.quantity > 0)
+        .filter((item) => item.quantity > 0),
     );
   };
 
   const removeFromCart = (id) => {
-    setCart((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
+    setCart((prev) => prev.filter((item) => item.id !== id));
   };
   return (
-    <div className="food-page">
-      <h2>   <a href="/" className="logo">
-        {/* SVG LOGO */}
-        <svg
-          width="52"
-          height="52"
-          viewBox="0 0 70 70"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="logo-svg"
-        >
-          <defs>
-            <linearGradient id="ssGradient" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#FF7A18" />
-              <stop offset="100%" stopColor="#FF3D54" />
-            </linearGradient>
-          </defs>
-
-          <rect width="70" height="70" rx="18" fill="url(#ssGradient)" />
-
-          <circle
-            cx="35"
-            cy="40"
-            r="16"
-            stroke="white"
-            strokeWidth="4"
+    <div className="food-page-list">
+      <h2>
+        {" "}
+        <a href="/" className="logo">
+          {/* SVG LOGO */}
+          <svg
+            width="52"
+            height="52"
+            viewBox="0 0 70 70"
             fill="none"
-          />
+            xmlns="http://www.w3.org/2000/svg"
+            className="logo-svg"
+          >
+            <defs>
+              <linearGradient id="ssGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#FF7A18" />
+                <stop offset="100%" stopColor="#FF3D54" />
+              </linearGradient>
+            </defs>
 
-          <path
-            d="M23 18V34"
-            stroke="white"
-            strokeWidth="3"
-            strokeLinecap="round"
-          />
+            <rect width="70" height="70" rx="18" fill="url(#ssGradient)" />
 
-          <path
-            d="M20 18V26"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
+            <circle
+              cx="35"
+              cy="40"
+              r="16"
+              stroke="white"
+              strokeWidth="4"
+              fill="none"
+            />
 
-          <path
-            d="M23 18V26"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
+            <path
+              d="M23 18V34"
+              stroke="white"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
 
-          <path
-            d="M26 18V26"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
+            <path
+              d="M20 18V26"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
 
-          <ellipse cx="47" cy="23" rx="5" ry="6" fill="white" />
+            <path
+              d="M23 18V26"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
 
-          <path
-            d="M47 29V40"
-            stroke="white"
-            strokeWidth="3"
-            strokeLinecap="round"
-          />
-        </svg>
+            <path
+              d="M26 18V26"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
 
-        <h1 className="logo-text">
-          Smart<span>Serve</span>
-        </h1>
-      </a> Menu</h2>
+            <ellipse cx="47" cy="23" rx="5" ry="6" fill="white" />
+
+            <path
+              d="M47 29V40"
+              stroke="white"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          <h1 className="logo-text">
+            Smart<span>Serve</span>
+          </h1>
+        </a>{" "}
+        Menu
+      </h2>
       <p>Table: {barcode}</p>
-
 
       <div className="food-grid">
         {foods.map((item) => (
@@ -141,10 +136,7 @@ const FoodList = () => {
                 <span>Rs {item.price}</span>
               </div>
 
-              <button
-                className="add-btn"
-                onClick={() => addToCart(item)}
-              >
+              <button className="add-btn" onClick={() => addToCart(item)}>
                 + Add
               </button>
             </div>
