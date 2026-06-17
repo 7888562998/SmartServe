@@ -11,6 +11,8 @@ import AddProductForm from "./Pages/AddProductPage/AddProductForm.jsx";
 import OwnerLayout from "./Layouts/OwnerLayout.jsx";
 import Dashboard from "./Pages/admin/Pages/Dashboard/Dashboard.jsx";
 import UploadProducts from "./Pages/admin/Pages/UploadProducts/UploadProducts.jsx";
+import Pricing from "./Pages/PricingPage/Pricing.jsx";
+
 
 import "./App.css"
 
@@ -47,6 +49,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/foodList/:barcode" element={<FoodList />} />
           <Route path="/AddFoodProduct" element={<AddProductForm />} />
+          <Route path="/pricing" element={<Pricing />} />
+
         </>}
       </Routes >
     </>
