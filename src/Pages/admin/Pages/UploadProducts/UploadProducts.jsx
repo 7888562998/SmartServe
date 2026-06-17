@@ -1,27 +1,51 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./UploadProducts.css";
 
 const AddProductForm = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    price: "",
-    category: "",
-    image: null,
-  });
+  const [productTitle, setProductTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleImage = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Product Data:", formData);
-    alert("Product Added!");
+
+    try {
+      const formData = new FormData();
+
+      formData.append("productTitle", productTitle);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("category", category);
+      formData.append("image", image);
+
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/v1/addProduct`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
+
+      alert(response.data.message);
+
+      setProductTitle("");
+      setDescription("");
+      setPrice("");
+      setCategory("");
+      setImage(null);
+    } catch (error) {
+      console.error(error);
+
+      alert(error?.response?.data?.message || "Failed to upload product");
+    }
   };
 
   return (
@@ -29,58 +53,64 @@ const AddProductForm = () => {
       <div className="form-title">Add New Food Item</div>
 
       <form onSubmit={handleSubmit}>
+        {/* Product Title */}
         <div className="input-group">
           <label>Product Title</label>
           <input
             type="text"
-            name="title"
-            placeholder="e.g. Veg Burger"
-            value={formData.title}
-            onChange={handleChange}
+            placeholder="Veg Burger"
+            value={productTitle}
+            onChange={(e) => setProductTitle(e.target.value)}
             required
           />
         </div>
 
+        {/* Description */}
         <div className="input-group">
           <label>Description</label>
           <textarea
-            name="description"
             placeholder="Short description..."
-            value={formData.description}
-            onChange={handleChange}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             required
           />
         </div>
 
         <div className="row">
+          {/* Price */}
           <div className="input-group">
             <label>Price (₹)</label>
             <input
               type="number"
-              name="price"
               placeholder="120"
-              value={formData.price}
-              onChange={handleChange}
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
               required
             />
           </div>
 
+          {/* Category */}
           <div className="input-group">
             <label>Category</label>
             <input
               type="text"
-              name="category"
-              placeholder="Pizza, Burger..."
-              value={formData.category}
-              onChange={handleChange}
+              placeholder="Burger"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
               required
             />
           </div>
         </div>
 
+        {/* Image Upload */}
         <div className="input-group">
           <label>Upload Image</label>
-          <input type="file" onChange={handleImage} />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+            required
+          />
         </div>
 
         <button type="submit" className="btn">
