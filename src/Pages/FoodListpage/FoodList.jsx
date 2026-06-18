@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import foods from "../../Data/foods.json";
 import "./FoodList.css";
 import CartList from "../../Components/FoodList/CartList";
 
@@ -8,14 +7,36 @@ const FoodList = () => {
   const { barcode } = useParams();
 
   const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/v1/getProductsByBarCode/${barcode}`
+        );
+
+        const data = await response.json();
+
+        setProducts(data.data || data || []);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    if (barcode) {
+      fetchProducts();
+    }
+  }, [barcode]);
 
   const addToCart = (item) => {
+    console.log("item",item)
     setCart((prev) => {
-      const existing = prev.find((p) => p.id === item.id);
+      const existing = prev.find((p) => p._id === item._id);
 
       if (existing) {
         return prev.map((p) =>
-          p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p,
+          p._id === item._id ? { ...p, quantity: p.quantity + 1 } : p
         );
       }
 
@@ -26,8 +47,8 @@ const FoodList = () => {
   const increaseQty = (id) => {
     setCart((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
-      ),
+        item._id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
     );
   };
 
@@ -35,21 +56,21 @@ const FoodList = () => {
     setCart((prev) =>
       prev
         .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
+          item._id === id ? { ...item, quantity: item.quantity - 1 } : item
         )
-        .filter((item) => item.quantity > 0),
+        .filter((item) => item.quantity > 0)
     );
   };
 
   const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+    setCart((prev) => prev.filter((item) => item._id !== id));
   };
+
+
   return (
     <div className="food-page-list">
       <h2>
-        {" "}
         <a href="/" className="logo">
-          {/* SVG LOGO */}
           <svg
             width="52"
             height="52"
@@ -117,18 +138,19 @@ const FoodList = () => {
           <h1 className="logo-text">
             Smart<span>Serve</span>
           </h1>
-        </a>{" "}
-        Menu
+        </a>
+        {" "}Menu
       </h2>
+
       <p>Table: {barcode}</p>
 
       <div className="food-grid">
-        {foods.map((item) => (
-          <div key={item.id} className="food-card">
-            <img src={item.image} alt={item.name} />
+        {products.map((item) => (
+          <div key={item._id} className={`food-card ${item._id}`}>
+            <img src={item.productImage.url} alt={item.name} />
 
             <div className="food-info">
-              <h3>{item.name}</h3>
+              <h3>{item.productTitle}</h3>
               <p>{item.description}</p>
 
               <div className="row">
@@ -136,7 +158,10 @@ const FoodList = () => {
                 <span>Rs {item.price}</span>
               </div>
 
-              <button className="add-btn" onClick={() => addToCart(item)}>
+              <button
+                className="add-btn"
+                onClick={() => addToCart(item)}
+              >
                 + Add
               </button>
             </div>
