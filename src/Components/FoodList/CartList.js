@@ -88,9 +88,9 @@ const CartList = ({
             <p>No items added</p>
           ) : (
             cart.map((item) => (
-              <div key={item.id} className="cart-item">
+              <div key={item._id} className="cart-item">
                 <img
-                  src={item.image}
+                  src={item.productImage.url}
                   alt={item.name}
                   className="cart-item-image"
                 />
@@ -98,26 +98,26 @@ const CartList = ({
                 <div className="cart-item-details">
                   <div className="item-top">
                     <div>
-                      <h4>{item.name}</h4>
+                      <h4>{item.productTitle}</h4>
                       <p>Rs {item.price}</p>
                     </div>
 
                     <button
                       className="remove-btn"
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() => removeFromCart(item._id)}
                     >
                       Remove
                     </button>
                   </div>
 
                   <div className="qty-controls">
-                    <button onClick={() => decreaseQty(item.id)}>
+                    <button onClick={() => decreaseQty(item._id)}>
                       -
                     </button>
 
                     <span>{item.quantity}</span>
 
-                    <button onClick={() => increaseQty(item.id)}>
+                    <button onClick={() => increaseQty(item._id)}>
                       +
                     </button>
                   </div>
