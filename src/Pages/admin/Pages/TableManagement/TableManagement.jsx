@@ -93,7 +93,7 @@ const TableManagement = () => {
 
   useEffect(() => {
     fetchTables();
-  }, []);
+  }, [fetchTables]);
 
   return (
     <div className="table-page">
