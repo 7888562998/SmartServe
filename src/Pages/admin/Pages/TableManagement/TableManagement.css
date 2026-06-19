@@ -1,0 +1,201 @@
+/* ================= PAGE ================= */
+.table-page {
+  padding: 40px;
+  background: linear-gradient(135deg, #f6f7fb, #eef1f6);
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  color: #222;
+  font-size: 28px;
+}
+
+/* ================= GRID ================= */
+.table-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* CARD */
+.table-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.table-card:hover {
+  transform: translateY(-6px);
+}
+
+/* TOP SECTION */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-card h2 {
+  font-size: 18px;
+  color: #333;
+}
+
+/* STATUS */
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.active {
+  background: #e7f9ed;
+  color: #1e7e34;
+}
+
+.status.inactive {
+  background: #ffe5e5;
+  color: #c0392b;
+}
+
+/* BARCODE */
+.barcode {
+  margin: 10px 0;
+  font-size: 13px;
+  color: #666;
+  word-break: break-all;
+}
+
+/* BUTTON GROUP */
+.btn-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-group button {
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.btn-group button:hover {
+  transform: scale(1.05);
+}
+
+/* BUTTON COLORS */
+.btn-group button:nth-child(1) { background: #3498db; color: white; }
+.btn-group button:nth-child(2) { background: #f39c12; color: white; }
+.btn-group button:nth-child(3) { background: #e74c3c; color: white; }
+
+.qr-btn {
+  background: #6c5ce7 !important;
+  color: white;
+}
+
+/* BULK BUTTON */
+.bulk-btn {
+  background: #111;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bulk-btn:hover {
+  background: #ff4d00;
+}
+
+/* ================= MODAL ================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-box {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  width: 340px;
+  animation: pop 0.2s ease-in-out;
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.qr-wrapper {
+  margin: 15px 0;
+}
+
+.barcode-text {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* MODAL ACTIONS */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-actions button:nth-child(1) { background: #2ecc71; color: white; }
+.modal-actions button:nth-child(2) { background: #3498db; color: white; }
+
+.close-btn {
+  background: #e74c3c !important;
+  color: white;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .table-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .table-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

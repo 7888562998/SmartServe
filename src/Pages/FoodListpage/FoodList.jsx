@@ -13,7 +13,7 @@ const FoodList = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/v1/getProductsByBarCode/${barcode}`
+          `${process.env.REACT_APP_API_URL}/getProductsByBarCode/${barcode}`
         );
 
         const data = await response.json();

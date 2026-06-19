@@ -1,0 +1,36 @@
+.terms-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  background: #f7f7f7;
+}
+
+.terms-box {
+  max-width: 900px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.terms-box h1 {
+  color: #ff4d00;
+  margin-bottom: 10px;
+}
+
+.terms-box h2 {
+  margin-top: 25px;
+  color: #222;
+}
+
+.terms-box p {
+  color: #555;
+  line-height: 1.7;
+  margin-top: 8px;
+}
+
+.updated {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+}

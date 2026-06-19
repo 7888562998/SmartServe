@@ -37,7 +37,7 @@ const FoodList = () => {
         setLoading(true);
 
         const res = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/v1/getProduct`,
+          `${process.env.REACT_APP_API_URL}/getProduct`,
           {
             method: "GET",
             headers: {

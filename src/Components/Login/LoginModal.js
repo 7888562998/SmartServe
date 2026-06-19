@@ -36,7 +36,7 @@ const LoginModal = ({ closeModal }) => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/v1/login`,
+        `${process.env.REACT_APP_API_URL}/login`,
         formData
       );
 
@@ -63,7 +63,7 @@ const LoginModal = ({ closeModal }) => {
   const handleStaffLogin = async () => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/v1/staff/send-otp`,
+        `${process.env.REACT_APP_API_URL}/staff/send-otp`,
         { email: formData.email }
       );
 
@@ -81,7 +81,7 @@ const LoginModal = ({ closeModal }) => {
 
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/v1/staff/verify-otp`,
+        `${process.env.REACT_APP_API_URL}/staff/verify-otp`,
         {
           email: formData.email,
           otp,
