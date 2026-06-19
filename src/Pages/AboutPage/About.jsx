@@ -7,109 +7,116 @@ const About = () => {
 
       {/* HERO SECTION */}
       <section className="about-hero">
-        <div className="about-overlay">
-          <h1>Welcome to SmartServe</h1>
-
+        <div className="overlay">
+          <h1>About SmartServe</h1>
           <p>
-            SmartServe makes restaurant ordering simple, fast, and contactless.
-            Customers can create orders directly from their table using a unique
-            Order Code provided by the restaurant.
+            Revolutionizing restaurant ordering with smart, fast, and contactless dining technology.
           </p>
         </div>
       </section>
 
-      {/* ABOUT CONTENT */}
-      <section className="about-content">
-        <div className="container">
+      {/* INTRO */}
+      <section className="about-section">
+        <h2>Who We Are</h2>
+        <p>
+          SmartServe is a modern SaaS platform designed for restaurants to digitize their
+          ordering system. We help restaurants replace traditional paper menus and manual
+          ordering with a fast, QR-based digital experience.
+        </p>
+      </section>
 
-          <div className="about-grid">
+      {/* STORY */}
+      <section className="about-section dark">
+        <h2>Our Story</h2>
+        <p>
+          Built with the vision of simplifying restaurant operations, SmartServe was created
+          to solve real problems like slow service, order errors, and inefficient billing.
+          Our platform connects customers and restaurants seamlessly using technology.
+        </p>
+      </section>
 
-            {/* LEFT CONTENT */}
-            <div className="about-text">
-              <h2>How SmartServe Works</h2>
+      {/* MISSION */}
+      <section className="about-section">
+        <h2>Our Mission</h2>
+        <p>
+          To empower restaurants with digital tools that improve speed, accuracy, and customer
+          satisfaction while increasing their revenue and operational efficiency.
+        </p>
+      </section>
 
-              <p>
-                SmartServe is designed for restaurants that want a faster and
-                smarter dining experience.
-              </p>
+      {/* FEATURES */}
+      <section className="features">
+        <h2>What We Offer</h2>
 
-              <div className="feature-card">
-                <h3>1. Sit at Your Table</h3>
-                <p>
-                  Customers visit the restaurant and sit at their assigned table.
-                </p>
-              </div>
+        <div className="feature-grid">
+          <div className="feature-card">
+            <h3>⚡ Instant Ordering</h3>
+            <p>Customers order directly from their table using QR codes.</p>
+          </div>
 
-              <div className="feature-card">
-                <h3>2. Enter Your Order Code</h3>
-                <p>
-                  Each table has a unique Order Code. Customers use this code
-                  to access the menu and place orders instantly.
-                </p>
-              </div>
+          <div className="feature-card">
+            <h3>📱 Digital Menu</h3>
+            <p>Dynamic menu updates without printing costs or delays.</p>
+          </div>
 
-              <div className="feature-card">
-                <h3>3. Create Orders Easily</h3>
-                <p>
-                  Browse the menu, add items to cart, and send orders directly
-                  to the kitchen without waiting for staff.
-                </p>
-              </div>
+          <div className="feature-card">
+            <h3>💳 Secure Payments</h3>
+            <p>Integrated payment gateway for fast and safe transactions.</p>
+          </div>
 
-              <div className="feature-card">
-                <h3>4. Faster Restaurant Service</h3>
-                <p>
-                  Restaurants receive orders instantly, reducing waiting time
-                  and improving customer experience.
-                </p>
-              </div>
-            </div>
+          <div className="feature-card">
+            <h3>📊 Restaurant Dashboard</h3>
+            <p>Track orders, revenue, and performance in real-time.</p>
+          </div>
 
-            {/* RIGHT IMAGES */}
-            <div className="about-images">
+          <div className="feature-card">
+            <h3>🔔 Live Order Updates</h3>
+            <p>Real-time notifications for kitchen and staff coordination.</p>
+          </div>
 
-              <img
-                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
-                alt="Restaurant Interior"
-              />
-
-              <img
-                src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop"
-                alt="Restaurant Table"
-              />
-
-              <img
-                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop"
-                alt="Restaurant Food"
-              />
-
-            </div>
+          <div className="feature-card">
+            <h3>💼 Business Growth</h3>
+            <p>Help restaurants increase efficiency and customer satisfaction.</p>
           </div>
         </div>
       </section>
 
-      {/* ORDER CODE SECTION */}
-      <section className="order-code-section">
-        <div className="container">
-
-          <div className="order-card">
-            <h2>Create Order Using Order Code</h2>
-
-            <p>
-              To create an order, customers must already be inside the
-              restaurant and seated at a table.
-            </p>
-
-            <div className="dummy-order-box">
-              <span>Example Order Code</span>
-              <h3>TABLE-204</h3>
-            </div>
-
-            <button>Create Order</button>
-          </div>
-
+      {/* STATS */}
+      <section className="stats">
+        <div>
+          <h3>500+</h3>
+          <p>Restaurants</p>
+        </div>
+        <div>
+          <h3>50K+</h3>
+          <p>Orders Processed</p>
+        </div>
+        <div>
+          <h3>10K+</h3>
+          <p>Happy Customers</p>
+        </div>
+        <div>
+          <h3>99%</h3>
+          <p>Uptime</p>
         </div>
       </section>
+
+      {/* VISION */}
+      <section className="about-section dark">
+        <h2>Our Vision</h2>
+        <p>
+          We aim to become the leading digital restaurant platform globally,
+          helping every restaurant—from small cafés to large chains—go fully digital.
+        </p>
+      </section>
+
+      {/* CTA */}
+      <section className="cta">
+        <h2>Ready to Transform Your Restaurant?</h2>
+        <p>Join SmartServe and bring your restaurant into the digital era.</p>
+        <button>Get Started</button>
+      </section>
+
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 import Header from "./Components/Header/Header.js";
+import Footer from "./Components/Footer/Footer.js";
 import Home from "./Pages/HomePage/Home.jsx";
 import About from "./Pages/AboutPage/About.jsx";
 import Barcode from "./Pages/BarCode/Barcode.jsx";
@@ -12,6 +13,8 @@ import OwnerLayout from "./Layouts/OwnerLayout.jsx";
 import Dashboard from "./Pages/admin/Pages/Dashboard/Dashboard.jsx";
 import UploadProducts from "./Pages/admin/Pages/UploadProducts/UploadProducts.jsx";
 import Pricing from "./Pages/PricingPage/Pricing.jsx";
+import TermsAndConditions from "./Pages/Term&ConditionsPage/TermsAndConditions.jsx";
+import TableManagement from "./Pages/admin/Pages/TableManagement/TableManagement.jsx";
 
 
 import "./App.css"
@@ -41,6 +44,7 @@ function App() {
           <Route path="/admin" element={<OwnerLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="uploadproducts" element={<UploadProducts />} />
+            <Route path="TableManagement" element={<TableManagement />} />
           </Route>
         ) : <>
           <Route path="/" element={<Home />} />
@@ -50,9 +54,11 @@ function App() {
           <Route path="/foodList/:barcode" element={<FoodList />} />
           <Route path="/AddFoodProduct" element={<AddProductForm />} />
           <Route path="/pricing" element={<Pricing />} />
-
+          <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
         </>}
       </Routes >
+      {!isOwner && !hideHeader && <Footer />}
+
     </>
   );
 }

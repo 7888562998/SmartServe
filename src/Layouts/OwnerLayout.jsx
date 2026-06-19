@@ -62,6 +62,10 @@ function OwnerLayout() {
           Upload Products
         </NavLink>
 
+        <NavLink to="/admin/TableManagement" className="owner-link">
+          Table Management
+        </NavLink>
+
         <NavLink to="/admin/users" className="owner-link">
           Users
         </NavLink>

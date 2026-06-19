@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="about-page">
       {/* HERO SECTION */}
-      <section className="about-hero">
+      <section className="about-hero-home">
         <div className="about-overlay">
           <h1>Welcome to SmartServe</h1>
 

@@ -20,7 +20,7 @@ const CartList = ({
   const handlePayment = async (type) => {
     if (type === "NOW") {
       // Open payment gateway
-      const { data: order } = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/create-order`, {
+      const { data: order } = await axios.post(`${process.env.REACT_APP_API_URL}/create-order`, {
         amount: totalAmount, // ₹500
       });
 
@@ -40,7 +40,7 @@ const CartList = ({
 
         handler: async function (response) {
           const verifyRes = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/v1/verify-payment`,
+            `${process.env.REACT_APP_API_URL}/verify-payment`,
             {
               razorpay_order_id: order.id,
               razorpay_payment_id: response.razorpay_payment_id,
