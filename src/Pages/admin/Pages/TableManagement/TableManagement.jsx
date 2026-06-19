@@ -112,7 +112,7 @@ const TableManagement = () => {
             <h2>Table QR Code</h2>
 
             <div className="qr-wrapper" ref={qrRef}>
-              <QRCodeCanvas value={selectedBarcode} size={220} />
+              <QRCodeCanvas value={`https://smartserve12.netlify.app/foodList/${selectedBarcode}`} size={220} />
             </div>
 
             <p className="barcode-text">{selectedBarcode}</p>
