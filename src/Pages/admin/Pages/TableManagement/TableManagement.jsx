@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { QRCodeCanvas } from "qrcode.react";
 import "./TableManagement.css";
@@ -10,7 +10,7 @@ const TableManagement = () => {
   const token = localStorage.getItem("token");
   const qrRef = useRef();
 
-  const fetchTables = async () => {
+  const fetchTables = useCallback(async () => {
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_API_URL}/getTableList`,
@@ -21,7 +21,7 @@ const TableManagement = () => {
     } catch (err) {
       console.log(err.message);
     }
-  };
+  }, [token]);
 
   const updateTableStatus = async (table) => {
     try {
@@ -94,7 +94,7 @@ const TableManagement = () => {
   useEffect(() => {
     fetchTables();
   }, [fetchTables]);
-
+  
   return (
     <div className="table-page">
       <div className="header">
