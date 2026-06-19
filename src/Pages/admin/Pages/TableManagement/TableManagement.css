@@ -7,14 +7,14 @@
 }
 
 /* HEADER */
-.header {
+.headerTableTableManagement {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
 }
 
-.header h1 {
+.headerTableTableManagement h1 {
   color: #222;
   font-size: 28px;
 }

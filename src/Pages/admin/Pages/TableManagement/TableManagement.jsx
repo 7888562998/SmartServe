@@ -97,7 +97,7 @@ const TableManagement = () => {
   
   return (
     <div className="table-page">
-      <div className="header">
+      <div className="headerTableTableManagement">
         <h1>Table Management</h1>
 
         <button className="bulk-btn" onClick={setAllInactive}>
