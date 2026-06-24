@@ -5,7 +5,6 @@ import Header from "./Components/Header/Header.js";
 import Footer from "./Components/Footer/Footer.js";
 import Home from "./Pages/HomePage/Home.jsx";
 import About from "./Pages/AboutPage/About.jsx";
-import Barcode from "./Pages/BarCode/Barcode.jsx";
 import Register from "./Pages/RegisterPage/Register.jsx";
 import FoodList from "./Pages/FoodListpage/FoodList.jsx";
 import AddProductForm from "./Pages/AddProductPage/AddProductForm.jsx";
@@ -49,7 +48,6 @@ function App() {
         ) : <>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/barcode" element={<Barcode />} />
           <Route path="/register" element={<Register />} />
           <Route path="/foodList/:barcode" element={<FoodList />} />
           <Route path="/AddFoodProduct" element={<AddProductForm />} />

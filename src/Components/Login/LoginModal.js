@@ -112,7 +112,7 @@ const LoginModal = ({ closeModal }) => {
     <div className="modal-overlay">
       <div className="modal-container">
 
-        <button className="close-btn" onClick={closeModal}>
+        <button className="close-btn-login" onClick={closeModal}>
           ✖
         </button>
 

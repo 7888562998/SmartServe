@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "./Barcode.css";
-import { QRCodeCanvas } from "qrcode.react";
 import axios from "axios";
 
-const Barcode = () => {
+const Barcode = ({ onClose, onSuccess }) => {
   const [tableNo, setTableNo] = useState("");
-  const [generatedCode, setGeneratedCode] = useState("");
-  const BASE_URL = "https://smartserve12.netlify.app";
 
   const generateCode = async () => {
     if (!tableNo) return alert("Enter table number");
@@ -17,13 +14,13 @@ const Barcode = () => {
       "-" +
       Math.random().toString(36).substring(2, 8).toUpperCase();
 
-    setGeneratedCode(code);
     return code;
   };
 
   const setTableStatus = async () => {
     try {
       const barcode = await generateCode();
+      if (!barcode) return;
 
       const token = localStorage.getItem("token");
 
@@ -43,6 +40,8 @@ const Barcode = () => {
       );
 
       console.log("Success", response.data);
+
+      if (onSuccess) onSuccess();
     } catch (error) {
       console.log("Error", error.response?.data || error.message);
     }
@@ -51,46 +50,20 @@ const Barcode = () => {
   return (
     <div className="barcode-page">
       <div className="card">
-
         <h1>SmartServe QR Generator</h1>
         <p className="subtitle">Generate table QR for ordering system</p>
 
         <input
           type="text"
-          placeholder="Enter Table No (e.g. T1, T2)"
+          placeholder="Enter Table No (e.g. 1, 2,...etc)"
           value={tableNo}
           onChange={(e) => setTableNo(e.target.value)}
         />
 
-        <button onClick={setTableStatus}>
-          Generate QR Code
+        <button onClick={setTableStatus}>Generate QR Code</button>
+        <button style={{ marginTop: "10px" }} onClick={onClose}>
+          Close
         </button>
-
-        {generatedCode && (
-          <div className="result">
-
-            <p className="scan-text">Scan to Order</p>
-
-            <div className="qr-box">
-              <QRCodeCanvas
-                value={`${BASE_URL}/foodList/${generatedCode}`}
-                size={180}
-              />
-            </div>
-
-            <h2 className="code">{generatedCode}</h2>
-
-            <a
-              className="order-link"
-              href={`${BASE_URL}/foodList/${generatedCode}`}
-            >
-              Start your order →
-            </a>
-
-            <small>Valid for current session only</small>
-          </div>
-        )}
-
       </div>
     </div>
   );

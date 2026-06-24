@@ -2,10 +2,12 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { QRCodeCanvas } from "qrcode.react";
 import "./TableManagement.css";
+import Barcode from "../../../../Components/Admin/BarCode/Barcode";
 
 const TableManagement = () => {
   const [tables, setTables] = useState([]);
   const [selectedBarcode, setSelectedBarcode] = useState(null);
+  const [openCreateModal, setOpenCreateModal] = useState(false);
 
   const token = localStorage.getItem("token");
   const qrRef = useRef();
@@ -94,25 +96,64 @@ const TableManagement = () => {
   useEffect(() => {
     fetchTables();
   }, [fetchTables]);
-  
+
   return (
     <div className="table-page">
       <div className="headerTableTableManagement">
         <h1>Table Management</h1>
 
-        <button className="bulk-btn" onClick={setAllInactive}>
-          Set All Inactive
-        </button>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button className="bulk-btn" onClick={setAllInactive}>
+            Set All Inactive
+          </button>
+
+          <button
+            className="bulk-btn"
+            onClick={() => setOpenCreateModal(true)}
+          >
+            + Create Table
+          </button>
+        </div>
       </div>
 
-      {/* ================= MODAL ================= */}
+      {/* ================= CREATE TABLE MODAL ================= */}
+      {openCreateModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setOpenCreateModal(false)}
+        >
+          <div
+            className="modal-box"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Barcode
+              onClose={() => setOpenCreateModal(false)}
+              onSuccess={() => {
+                fetchTables();
+                setOpenCreateModal(false);
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* ================= QR MODAL ================= */}
       {selectedBarcode && (
-        <div className="modal-overlay" onClick={() => setSelectedBarcode(null)}>
-          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="modal-overlay"
+          onClick={() => setSelectedBarcode(null)}
+        >
+          <div
+            className="modal-box"
+            onClick={(e) => e.stopPropagation()}
+          >
             <h2>Table QR Code</h2>
 
             <div className="qr-wrapper" ref={qrRef}>
-              <QRCodeCanvas value={`https://smartserve12.netlify.app/foodList/${selectedBarcode}`} size={220} />
+              <QRCodeCanvas
+                value={`https://smartserve12.netlify.app/foodList/${selectedBarcode}`}
+                size={220}
+              />
             </div>
 
             <p className="barcode-text">{selectedBarcode}</p>
@@ -120,7 +161,8 @@ const TableManagement = () => {
             <div className="modal-actions">
               <button
                 onClick={() => {
-                  const canvas = qrRef.current.querySelector("canvas");
+                  const canvas =
+                    qrRef.current.querySelector("canvas");
                   const url = canvas.toDataURL("image/png");
 
                   const a = document.createElement("a");
@@ -134,7 +176,8 @@ const TableManagement = () => {
 
               <button
                 onClick={() => {
-                  const canvas = qrRef.current.querySelector("canvas");
+                  const canvas =
+                    qrRef.current.querySelector("canvas");
                   const img = canvas.toDataURL("image/png");
 
                   const win = window.open("", "_blank");
@@ -169,7 +212,11 @@ const TableManagement = () => {
           <div className="table-card" key={table._id}>
             <div className="card-top">
               <h2>Table {table.tableNo}</h2>
-              <span className={table.active ? "status active" : "status inactive"}>
+              <span
+                className={
+                  table.active ? "status active" : "status inactive"
+                }
+              >
                 {table.active ? "ACTIVE" : "INACTIVE"}
               </span>
             </div>
@@ -183,13 +230,19 @@ const TableManagement = () => {
 
               <button onClick={() => editTable(table)}>Edit</button>
 
-              <button onClick={() => deleteTable(table.tableNo)}>
+              <button
+                onClick={() =>
+                  deleteTable(table.tableNo)
+                }
+              >
                 Delete
               </button>
 
               <button
                 className="qr-btn"
-                onClick={() => setSelectedBarcode(table.barcode)}
+                onClick={() =>
+                  setSelectedBarcode(table.barcode)
+                }
               >
                 QR Code
               </button>

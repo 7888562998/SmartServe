@@ -1,18 +1,17 @@
-.barcode-page {
-  min-height: 100vh;
+.barcode-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f8fafc, #eef2ff);
-  font-family: Poppins, sans-serif;
   padding: 20px;
+  font-family: Poppins, sans-serif;
 }
 
+/* CARD */
 .card {
   background: white;
   padding: 30px;
   border-radius: 18px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 420px;
   text-align: center;
@@ -35,6 +34,7 @@
   margin-bottom: 20px;
 }
 
+/* INPUT */
 .card input {
   width: 100%;
   padding: 12px;
@@ -50,6 +50,7 @@
   box-shadow: 0 0 0 3px rgba(255, 61, 84, 0.15);
 }
 
+/* PRIMARY BUTTON */
 .card button {
   width: 100%;
   padding: 12px;
@@ -66,6 +67,7 @@
   transform: scale(1.02);
 }
 
+/* RESULT BOX */
 .result {
   margin-top: 20px;
   padding: 20px;
@@ -104,4 +106,12 @@
 
 .order-link:hover {
   text-decoration: underline;
+}
+
+/* CLOSE BUTTON (IMPORTANT FIX) */
+.close-btn {
+  margin-top: 10px;
+  background: #111827 !important;
+  color: white;
+  border-radius: 10px;
 }
